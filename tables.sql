@@ -11,3 +11,17 @@ INSERT INTO vaccination_data.parents(parentid,parentname,gender,phonenumber,iden
 (015,'eliza beth','female','+254754355','66738929')
 
 SELECT * FROM vaccination_data.parents
+
+select
+  max(gender) as total_count,
+  count(case when gender='Male'  then 1 end) as male_cnt,
+  count(case when gender='Female'  then 1 end) as female_cnt,
+  count(*) as total_cnt
+from vaccination_data.parents
+
+
+SELECT COUNT (*) AS children_under_4yrs1M20D FROM vaccination_data.child
+WHERE dob > date_sub(CURRENT_DATE(),INTERVAL 4 YEAR) OR
+(dob > date_sub(CURRENT_DATE(),INTERVAL 4 YEAR) AND dob > date_sub(CURRENT_DATE(),interval 1 MONTH)) OR
+(dob > date_sub(CURRENT_DATE(),INTERVAL 4 YEAR) AND dob >date_sub(CURRENT_DATE(),INTERVAL 1 MONTH) AND dob > date_sub(CURRENT_DATE(),INTERVAL 20 DAY))
+
